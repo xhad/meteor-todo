@@ -1,0 +1,171 @@
+<head>
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+    <title>Code ToDo</title>
+    <link href="bootstrap-switch.css" rel="stylesheet">
+    <script src="jquery.js"></script>
+    <script src="bootstrap-switch.js"></script>
+
+    <script>
+    var c = document.createElement( 'canvas' ),
+    ctx = c.getContext( '2d' ),
+    rows = cols = 36,
+    gap = 1,
+    grays = [
+      [ 12, 29 ],
+      [ 14, 37 ],
+      [ 9, 50 ],
+      [ 17, 56 ],
+      [ 6, 66 ]
+    ],
+    sizes = [ 4, 9, 14 ],
+    frequency = [ false, 30, 9 ],
+    cw = ch = c.width = c.height = ( sizes[ 0 ] + gap ) * rows;
+
+function random( max, min ) {
+  var min = min || 0;
+  return Math.random() * ( max - min ) + min;
+}
+
+function cell( x, y, size ) {
+  var gray = Math.floor( random( grays.length ) ),
+      fill = grays[ gray ][ 0 ],
+      stroke = grays[ gray ][ 1 ];
+  ctx.fillStyle = 'rgb(' + fill + ', ' + fill + ', ' + fill + ')';
+  ctx.strokeStyle = 'rgb(' + stroke + ', ' + stroke + ', ' + stroke + ')';
+  ctx.fillRect( x, y, size, size );    
+  ctx.strokeRect( x + 0.5, y + 0.5, size - 1, size - 1 );
+}
+
+function generate() {
+  var store = [];
+  
+  ctx.fillStyle = 'rgb(18, 18, 18)';
+  ctx.fillRect( 0, 0, cw, ch );
+  
+  for( var x = 0; x < cols; x ++ ){
+    for( var y = 0; y < rows; y ++ ){
+      cell( 
+        ( x * sizes[ 0 ] ) + ( x * gap ), 
+        ( y * sizes[ 0 ] ) + ( y * gap ), 
+        sizes[ 0 ] 
+      );   
+    }
+  }
+  
+  for( var freq = 0; freq < frequency.length; freq++ ) {
+    if( frequency[ freq ] ){
+      for( var i = 0; i < frequency[ freq ]; ) {
+        var canDraw = true,
+            sizeNew = sizes[ freq ],
+            pad = Math.ceil( ( sizeNew / cw ) * rows );
+            xNew = Math.floor( random( 1, cols - pad ) ) * ( ch / cols ),
+            yNew = Math.floor( random( 1, rows - pad ) ) * ( cw / rows ),            
+            storeLength = store.length;
+        if( storeLength ) {
+          for( var j = 0; j < storeLength; j++ ) {
+            var storeCell = store[ j ];
+            if( !(
+              xNew + sizeNew + ( cw / cols ) < storeCell.x ||
+              yNew + sizeNew + ( ch / rows ) < storeCell.y ||
+              xNew > storeCell.x + storeCell.size + ( cw / cols ) ||
+              yNew > storeCell.y + storeCell.size + ( ch / rows )
+            ) ) {
+              canDraw = false;
+              break;
+            }
+          }          
+        }
+        if( canDraw ) {
+          cell( xNew, yNew, sizeNew );
+          store.push( { x: xNew, y: yNew, size: sizeNew } );
+          i++;
+        }
+      }
+    }
+  }
+  
+  document.body.style.background = 'url(' + c.toDataURL() + ')';
+}
+
+$(document).ready(generate);
+</script>
+
+</head>
+
+<body>
+    <div class="container">
+        <!-- header section -->
+        <div class="row">
+            <div class="col-xs-5 mb5 mt50 noselect select">{{> loginButtons}}</div>
+            {{#if currentUser}}
+            <div class="col-xs-1 mt50">
+                <label class="hide-completed">
+                    <input class="hide-completed-button big" type="checkbox" checked="{{hideCompleted}}" />
+                </label>
+            </div>
+                      <div class="right mt20">
+                <h1 class="large mr20 badge">{{incompleteCount}}</h1></div>
+                 
+        
+                  
+            {{else}}
+          
+
+            <h1 style="font-family: Pacifico; color: white; margin-top: 50%;text-align: center; font-size: 50px;">Code Todo</h1>
+        
+            {{/if}}
+       
+        </div>
+        <!-- task input section -->
+        <div class="row">
+            {{#if currentUser}}
+                        <h4 class="right" style="text-align: center; font-family: Pacifico; color: white; font-size: 20px; margin-left: 30%; margin-right: 30%;">Code Todo</h4>
+
+            <form class="new-task">
+                <div class="input-group">
+                    <input type="text" name="text" placeholder="Enter new coding tasks" class="form-control" />
+                    <span class="input-group-btn">
+        <button class="btn btn-default" type="text">Add</button>
+      </span>
+                </div>
+            </form>
+            <!-- hide completed -->
+            <div class="row">
+            </div>
+            <!-- tasks panel -->
+            <div class="panel panel-default card ">
+                {{#each tasks}} {{> task}} {{/each}}
+            </div>
+            {{/if}}
+            <!-- Task Panel -->
+        </div>
+    </div>
+</body>
+<template name="task">
+    <div class="panel-body">
+        <div class="m20">
+            <span class="left"><h4>{{text}}</h4></span>
+        </div>
+        {{#if isOwner}}
+        <div class="btn-group btn-group-justified noselect" role="group" aria-label="...">
+            <div class="btn-group" role="group">
+                <button submit="{{checked}}" class="{{#if isOwner}}toggle-checked{{/if}} btn {{#if checked}}btn-default{{else}}btn-default{{/if}}">{{#if checked}}Finished{{else}}ToDo{{/if}}</button>
+            </div>
+            <div class="btn-group" role="group">
+                <button type="button" class="btn toggle-private {{#if private}}btn-default{{else}}btn-default {{/if}}
+">{{#if private}}Private{{else}}Public{{/if}}</button>
+            </div>
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-danger {{#if isOwner}}delete{{/if}}">Delete</button>
+            </div>
+        </div>
+        {{/if}}
+        <span class="{{#if checked}}checked{{/if}} {{#if private}}private{{/if}}"></span>
+        <div class="m20">
+            <p><i>Created by <strong>{{username}}</strong> about {{formatDate createdAt}}.{{#if isOwner}}
+            
+            {{/if}}</i></p>
+        </div>
+        <hr>
+    </div>
+</template>

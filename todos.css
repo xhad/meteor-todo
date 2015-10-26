@@ -1,0 +1,224 @@
+
+#login-dropdown-list {
+   margin-left: 5px !important;
+   margin-top: -20px;
+   width: 330px !important;
+   height: 400px !important;
+}
+
+#login-username {
+   padding: 5px !important;
+   font-size: 20px !important;
+}
+
+#login-password {
+   padding: 5px !important;
+   font-size: 20px !important;
+}
+
+#login-username-label {
+   font-size: 20px;
+}
+
+#login-password-label {
+   font-size: 20px;
+}
+
+.login-link-text {
+   text-decoration: none !important;
+   text-decoration: none !important;
+   background: #777;
+   border-radius: 10px;
+   color: #fff !important;
+   padding: 10px;
+   margin-left: 5px;
+   font-size: 20px;
+}
+.login-link-text a:hover {
+	color: #778 !important;
+}
+
+#login-name-link {
+   border: 2px solid #777;
+   color: #BD3A3A;
+
+}
+
+#signup-link {
+   text-decoration: none !important;
+   text-decoration: none !important;
+   border: 2px solid #777777;
+   border-radius: 10px;
+   color: #777777;
+   padding: 5px;
+   margin-top: 20px;
+   font-size: 15px;
+}
+#login-sign-in-link a:hover {
+	color: #777 !important;
+}
+
+#back-to-login-link {
+   text-decoration: none !important;
+   text-decoration: none !important;
+   border: 2px solid #596595;
+   border-radius: 10px;
+   color: #596595;
+   padding: 5px;
+   margin-top: 20px;
+   font-size: 15px;
+}
+
+#login-buttons-password {
+   margin-top: 20px;
+   font-size: 20px !important;
+}
+
+.login-close-text {
+   text-decoration: none !important;
+   border: 2px solid #777;
+   border-radius: 10px !important;
+   color: #777 !important;
+   padding: 10px;
+   margin: 10px;
+}
+
+#login-buttons-open-change-password {
+   margin: 10px !important;
+   margin-top: 50px !important;
+   margin-left: 10px !important;
+   padding: 10px !important;
+   font-size: 1em !important;
+}
+
+#login-buttons-logout {
+   margin: 10px !important;
+   margin-left: 10px !important;
+   padding: 10px !important;
+   font-size: 1em !important;
+   background: #777 !important;
+}
+
+.input-group {
+   width: 90%;
+   margin: 20px;
+}
+
+.form-control {
+	padding-top: 10px;
+	padding-bottom: 10px;
+
+}
+.hide-completed {
+	width: 100% !important;
+
+}
+.hide-completed-button {
+	margin-right: 20px !important;
+}
+
+#red-button {
+   background-color: red;
+}
+
+/*List group for the tasks */
+
+.list-group li {
+   list-style-type: none !important;
+}
+
+.m5 {
+   margin: 5px !important;
+}
+
+.mb5 {
+   margin-bottom: 5px !important;
+}
+
+.mb10 {
+   margin-bottom: 10px;
+}
+
+.mb20 {
+   margin-bottom: 20px;
+}
+
+.mt5 {
+   margin-top: 5px;
+}
+
+.mt10 {
+   margin-top: 10px;
+}
+
+.mt20 {
+   margin-top: 20px;
+}
+
+.mt50 {
+   margin-top: 50px;
+}
+
+.mr20 {
+   margin-right: 20px;
+}
+
+.m10 {
+   margin: 10pxs;
+}
+
+.m20 {
+   margin: 20px;
+}
+
+.large {
+   font-size: 5em !important;
+}
+
+.right {
+   float: right;
+}
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.select:focus{
+  border:1px solid #fafafa;
+  -webkit-box-shadow:0 0 6px #007eff;
+  -moz-box-shadow:0 0 5px #007eff;
+  box-shadow:0 0 5px #007eff;
+  outline: none;
+}
+
+.gray-border {
+   border: 1px solid #777;
+   border-radius: 2px;
+}
+
+
+.big {
+   width: 20px;
+   height: 20px;
+}
+
+
+/* latin */
+@font-face {
+  font-family: 'Pacifico';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Pacifico Regular'), local('Pacifico-Regular'), url(https://fonts.gstatic.com/s/pacifico/v7/Q_Z9mv4hySLTMoMjnk_rCfesZW2xOQ-xsNqO47m55DA.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+
+
+
+
+
+
